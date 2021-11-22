@@ -1,23 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './src/screens/HomeScreen';
-import Navigation from './src/configs/Navigation'
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-export default function App() {
+import SignIn from './screens/SignIn';
+import Routes from './configs/Routes'
+
+function App() {
   return (
-    <>
-    <SafeAreaProvider>
-        <Navigation />
-    </SafeAreaProvider>
-    </>
+    <Routes />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
