@@ -2,10 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 import Navigation from './src/configs/Navigation'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 export default function App() {
   return (
     <>
-    <Navigation />
+    <SafeAreaProvider>
+        <Navigation />
+    </SafeAreaProvider>
     </>
   );
 }

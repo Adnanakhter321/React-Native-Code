@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
-import { auth, createUserWithEmailAndPassword } from '../../src2/config/firebaseconfig'
+import { auth, createUserWithEmailAndPassword } from '../config/firebaseconfig'
 import * as Facebook from 'expo-facebook';
 
 
