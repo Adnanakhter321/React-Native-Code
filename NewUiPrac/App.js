@@ -1,9 +1,9 @@
 import React from 'react';
-import SignIn from './screens/SignIn';
-import Routes from './configs/Routes'
-
+import Routes from './Navigation/Routes'
+// import Home from './screens/Home';
 function App() {
   return (
+    // <Home />
     <Routes />
   );
 }

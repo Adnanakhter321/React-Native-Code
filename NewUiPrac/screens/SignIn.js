@@ -1,11 +1,32 @@
 import React from 'react'
-// okkkkkkkk
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Image } from 'react-native'
 let ScreenHeight = Dimensions.get("window").height;
 
-const SignIn = ({navigation}) => {
+const SignIn = ({ navigation }) => {
     return (
         <View style={style.main}>
+            <TouchableOpacity style={{
+                    height: 29,
+                    backgroundColor: 'red',
+                    width: 28,
+                    borderRadius: 9,
+                    position:'relative',
+                    top:22,
+                    left:25,
+                    backgroundColor:'#1e272e'
+                }} onPress={()=>{
+                    navigation.navigate('Signup')
+                }}>
+                <View >
+                    <Text style={{
+                        position:'relative',
+                        fontSize:25,
+                        bottom:4,
+                        left:7,
+                        color:'white'
+                    }}>{'<'}</Text>
+                </View>
+            </TouchableOpacity>
             <View style={style.inputView}>
                 <View style={style.welcomeTextView}>
                     <Text style={style.welcomeText}>
@@ -28,7 +49,7 @@ const SignIn = ({navigation}) => {
                             Password
                         </Text>
                     </View>
-                    <TextInput placeholderTextColor='#989c9f' placeholder='Enter Your Password' style={style.input} />
+                    <TextInput placeholderTextColor='#989c9f' placeholder='Enter Your Password' secureTextEntry={true} style={style.input} />
                 </View>
                 <View style={style.okkk}>
                     <TouchableOpacity style={style.rememberContainer}>
@@ -43,7 +64,9 @@ const SignIn = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 20 }}>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={()=>{
+                        navigation.navigate("StackNavigator")
+                    }} >
                         <Text style={style.Signin}>Sign In</Text>
                     </TouchableOpacity>
                 </View>
@@ -101,7 +124,7 @@ const SignIn = ({navigation}) => {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity onPress={() => {
                     navigation.navigate('Signup')
                 }} style={style.redirect}>
                     <Text style={{ color: 'white', fontSize: 17 }}>
@@ -133,7 +156,7 @@ const style = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection:'row'
+        flexDirection: 'row'
     },
     Facebook: {
         position: 'relative',
@@ -182,7 +205,7 @@ const style = StyleSheet.create({
         borderTopRightRadius: 30,
         borderTopLeftRadius: 30,
         height: ScreenHeight,
-        marginTop:23
+        marginTop: 23
     },
     welcomeTextView: {
         paddingBottom: 20
@@ -206,8 +229,8 @@ const style = StyleSheet.create({
         backgroundColor: '#50575c',
         width: 310,
         borderRadius: 10,
-        paddingHorizontal:13,
-        paddingVertical:7,
+        paddingHorizontal: 13,
+        paddingVertical: 7,
         color: 'white',
     },
     inputView: {
