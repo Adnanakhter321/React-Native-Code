@@ -13,6 +13,7 @@ let studentSchema = mongoose.Schema({
     },
     rollNumber: {
         type: Number,
+        unique:true
     },
     createdAt: {
         type: Number,

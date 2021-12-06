@@ -53,10 +53,8 @@ app.get("/addstudent", async (req, res) => {
     email: req.body.emailAddress,
     rollNumber: req.body.rollNum,
   });
-
-  let savedData = await student.save();
-
-  res.json(savedData);
+    let savedData = await student.save();
+    res.json(savedData);
 });
 
 // app.use((req, res) => {
