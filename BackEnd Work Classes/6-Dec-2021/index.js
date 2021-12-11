@@ -34,10 +34,9 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import Student from "./schema/student.js";
+import cors from "cors"
 
 const app = express();
-app.use(bodyParser.json({ limit: "5mb" }));
-app.use(bodyParser.urlencoded({ extended: false }));
 mongoose.connect(
   "mongodb+srv://adnan:Adnan123@cluster0.zlows.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
@@ -49,10 +48,16 @@ mongoose.connection.once("open", (req, res) => {
 mongoose.connection.on("error", () => {
   console.log("Data base connection Failed");
 });
+
+app.use(cors());
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("tiny"));
+
+
 app.post("/get-student-pagination/:pageNumber", async (req, res) => {
   let { pageNumber } = req.params;
-  let skipCount 
+  let skipCount
   if (Number(pageNumber) === 1) {
     skipCount = 0
     console.log(skipCount);
@@ -86,6 +91,10 @@ app.get("/get-student/:name", async (req, res) => {
   let data = await Student.find({ studentName: name });
   res.json(data);
 });
+app.post("/get-all-students", async (req, res) => {
+  let allStudents = await Student.find();
+  res.json(allStudents)
+})
 app.post("/add-student", async (req, res) => {
   console.log(req.body);
   let student = new Student({
@@ -98,6 +107,7 @@ app.post("/add-student", async (req, res) => {
 
   res.json(savedData);
 });
-app.listen(2000, () => {
-  console.log("Server Starte`d`");
+let port = 5000
+app.listen(port, () => {
+  console.log(`Server Started at ${port}`);
 });
