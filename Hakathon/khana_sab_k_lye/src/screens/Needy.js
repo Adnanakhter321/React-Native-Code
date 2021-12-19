@@ -3,9 +3,10 @@ import { View, Text, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { RadioButton } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
-import { uploadBytes, ref, storage, getDownloadURL, setDoc, doc, db, auth } from "../configs/Firebase"
+import { uploadBytes, ref, storage, getDownloadURL, setDoc, doc, db, auth, onAuthStateChanged } from "../configs/Firebase"
 const Map = ({ navigation }) => {
     const [name, setname] = useState('');
+    const [currentUser, setcurrentUser] = useState('');
     const [fathername, setfathername] = useState('');
     const [cnic, setcnic] = useState('');
     const [dob, setdob] = useState('');
@@ -15,7 +16,11 @@ const Map = ({ navigation }) => {
     const [image, setImage] = useState(false);
     const [submit, setsubmit] = useState("Submit Request");
     const [text, settext] = useState("Upload Your Cnic Image");
-
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setcurrentUser(user.uid)
+        }
+      });
     const submitRequest = async () => {
         const uid = new Date().getTime().toString();
         setsubmit("Submitting Request ...")
@@ -28,6 +33,7 @@ const Map = ({ navigation }) => {
                 nooffamily,
                 checked,
                 uid,
+                currentUser,
             }
             let storageRef = ref(storage, `Cnic/${image.data.name}`)
             if (image) {

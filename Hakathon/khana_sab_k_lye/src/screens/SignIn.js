@@ -8,7 +8,10 @@ export default function Home({ navigation }) {
     const [password, setPassword] = useState('');
     const [Signin, setSignin] = useState("SignIn");
     const SignIn = async () => {
-        if(email !== "adminpanel@gmail.com"){
+        if(email === "adminpanel@gmail.com"){
+            alert('User Not Exist or Wrong Email and password')
+        }
+        else{
             if (email && password) {
                 setSignin('SignIn.....')
                 try {
@@ -24,9 +27,6 @@ export default function Home({ navigation }) {
                 setSignin('SignIn')
                 console.error('Fill all fields and try again')
             }
-        }
-        else{
-            alert('User Not Exist or Wrong Email and password')
         }
     }
 

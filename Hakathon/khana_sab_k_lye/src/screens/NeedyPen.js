@@ -1,8 +1,23 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { View, Text } from 'react-native'
 import { Button } from 'react-native-paper';
-import { signOut, auth } from "../configs/Firebase"
+import { useSelector } from 'react-redux';
+import { signOut, auth, onAuthStateChanged } from "../configs/Firebase"
 const NeedyPen = ({ navigation }) => {
+    const [Food, setFood] = useState('')
+    let AcceptFood = useSelector((st)=> st.todoReducer.AcceptedFood)
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              AcceptFood.map((el)=>{
+                    if(el.useruid === user.uid){
+                        setFood(el)
+                    }
+              })
+            }
+          });
+          console.log(Food , 'yeeeeeee');
+    }, [AcceptFood])
     return (
         <>
            <View style={{justifyContent:'center', alignItems:'center'}}>

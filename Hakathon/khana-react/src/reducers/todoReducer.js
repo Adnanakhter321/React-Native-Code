@@ -1,16 +1,19 @@
 const initialState = {
-    adnan:[],
+    foodrequests:[],
 }
 
 
 const todoReducer = (state = initialState , action) => {
         switch(action.type) {
-            // case "CHECK_USER":
-            //     const{ data, uid } = action.payload;
-            //     return {
-            //         ...state,
-            //         user:[data,uid]
-            //     }
+            case "ADD_FOOD_REQUEST":
+                const{ data } = action.payload;
+                return {
+                    ...state,
+                    foodrequests:[
+                    ...state.foodrequests,
+                    data
+                    ]
+                }
             default : return state;
         }
 }

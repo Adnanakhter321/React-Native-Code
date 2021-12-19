@@ -1,6 +1,7 @@
 const initialState = {
     currentUser: [],
     cnic:[],
+    AcceptedFood:[]
 }
 
 
@@ -15,12 +16,22 @@ const todoReducer = (state = initialState , action) => {
                        data
                    ]
                 }
-            case "ADD_CURRENT_USER":
-                const{ data2 } = action.payload;
-                console.log(data2, 'hi');
+            case "ADD_ACCEPTED_FOOD":
+                const{ data3 } = action.payload;
                 return {
                     ...state,
-                    currentUser: [data2, data2.uid]
+                    AcceptedFood:[
+                       ...state.AcceptedFood,
+                       data3
+                   ]
+                }
+            case "ADD_CURRENT_USER":
+                const{ data2 } = action.payload;
+                return {
+                    ...state,
+                    currentUser:[
+                       data2
+                   ]
                 }
             default : return state;
         }

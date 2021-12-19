@@ -14,3 +14,11 @@ export const currentUser = (data) => {
         }
     }
 }
+export const AcceptedFood = (data) => {
+    return {
+        type: 'ADD_ACCEPTED_FOOD',
+        payload: {
+            data3: data,
+        }
+    }
+}
