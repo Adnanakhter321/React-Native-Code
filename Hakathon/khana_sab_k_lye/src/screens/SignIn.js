@@ -8,22 +8,26 @@ export default function Home({ navigation }) {
     const [password, setPassword] = useState('');
     const [Signin, setSignin] = useState("SignIn");
     const SignIn = async () => {
-        if (email && password) {
-            setSignin('SignIn.....')
-            try {
-                await signInWithEmailAndPassword(auth, email, password)
+        if(email !== "adminpanel@gmail.com"){
+            if (email && password) {
+                setSignin('SignIn.....')
+                try {
+                    await signInWithEmailAndPassword(auth, email, password)
+                    setSignin('SignIn')
+                    navigation.navigate('Khana Sab Ke Lye');
+                } catch (e) {
+                    setSignin('SignIn')
+                    console.error(e)
+                }
+            }
+            else {
                 setSignin('SignIn')
-                navigation.navigate('Khana Sab Ke Lye');
-            } catch (e) {
-                setSignin('SignIn')
-                console.error(e)
+                console.error('Fill all fields and try again')
             }
         }
-        else {
-            setSignin('SignIn')
-            console.error('Fill all fields and try again')
+        else{
+            alert('User Not Exist or Wrong Email and password')
         }
-
     }
 
     return (

@@ -4,6 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import admin from "../screens/admin";
+import adminLogin from "../screens/adminLogin"
 const Routess = () => {
  
   
@@ -11,8 +12,8 @@ const Routess = () => {
     <Router>
       {/* <Navbar /> */}
       <Switch>
-        <Route exact path='/' component={admin} />
-        {/* <Route path='/' component={ReactBones} /> */}
+        <Route exact path='/adminpanel' component={admin} />
+        <Route path='/' component={adminLogin} />
       </Switch>
     </Router>
   )
