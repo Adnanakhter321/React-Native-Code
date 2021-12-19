@@ -3,8 +3,8 @@ import { View, Text, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { RadioButton } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
-import { uploadBytes, ref, storage, getDownloadURL, setDoc, doc, db } from "../configs/Firebase"
-const Map = () => {
+import { uploadBytes, ref, storage, getDownloadURL, setDoc, doc, db, auth } from "../configs/Firebase"
+const Map = ({ navigation }) => {
     const [name, setname] = useState('');
     const [fathername, setfathername] = useState('');
     const [cnic, setcnic] = useState('');
@@ -17,6 +17,7 @@ const Map = () => {
     const [text, settext] = useState("Upload Your Cnic Image");
 
     const submitRequest = async () => {
+        const uid = new Date().getTime().toString();
         setsubmit("Submitting Request ...")
         if (name && fathername && cnic && dob && nooffamily && checked) {
             const Data = {
@@ -26,6 +27,7 @@ const Map = () => {
                 dob,
                 nooffamily,
                 checked,
+                uid,
             }
             let storageRef = ref(storage, `Cnic/${image.data.name}`)
             if (image) {
@@ -33,8 +35,10 @@ const Map = () => {
                     await uploadBytes(storageRef, image)
                     let url = await getDownloadURL(storageRef)
                     Data[`Cnicurl`] = url
+                    let userRef = doc(db, 'FoodRequests', uid)
+                    await setDoc(userRef, Data)
                     setsubmit("Submitted Request !")
-                    console.log(Data);
+                    navigation.navigate('Food Requests')
                 } catch (er) {
                     setsubmit("Submit Request")
                     console.error(er);
@@ -162,7 +166,7 @@ const Map = () => {
                     </View>
                 </View>
                 <Button style={{ marginTop: 20 }} mode='contained' onPress={pickImage}>
-                    {text} 
+                    {text}
                 </Button>
                 <Button onPress={submitRequest} style={{ marginVertical: 20 }} mode="contained">
                     {submit}
