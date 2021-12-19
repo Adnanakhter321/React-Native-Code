@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.adnanakhter321.khana_sab_k_lye"
     },
     "web": {
       "favicon": "./assets/favicon.png"

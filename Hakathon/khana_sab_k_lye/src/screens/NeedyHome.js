@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 export default function NeedyHome({ navigation }) {
     return (
        <>
-           <Tab.Navigator initialRouteName='Food'
+           <Tab.Navigator initialRouteName='Food Banks'
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;

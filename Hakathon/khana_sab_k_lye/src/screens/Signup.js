@@ -9,7 +9,7 @@ export default function Home({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const SignUp = async () => {
-    if (email && password&& username) {
+    if (email && password && username) {
       try {
         let { user } = await createUserWithEmailAndPassword(auth, email, password)
         let userRef = doc(db, 'Users', user.uid)
@@ -22,11 +22,11 @@ export default function Home({ navigation }) {
         })
         navigation.navigate('Khana Sab Ke Lye');
       } catch (e) {
-        console.error(e)
+        alert(e)
       }
     }
-    else{
-      console.error('Fill all fields and try again')
+    else {
+      alert('Fill all fields and try again')
     }
 
   }

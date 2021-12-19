@@ -20,12 +20,12 @@ export default function Home({ navigation }) {
                     navigation.navigate('Khana Sab Ke Lye');
                 } catch (e) {
                     setSignin('SignIn')
-                    console.error(e)
+                    alert(e)
                 }
             }
             else {
                 setSignin('SignIn')
-                console.error('Fill all fields and try again')
+                alert('Fill all fields and try again')
             }
         }
     }

@@ -47,17 +47,17 @@ const Map = ({ navigation }) => {
                     navigation.navigate('Food Requests')
                 } catch (er) {
                     setsubmit("Submit Request")
-                    console.error(er);
+                    alert(er);
                 }
             }
             else {
                 setsubmit("Submit Request")
-                console.error("Upload Image And try Again")
+                alert("Upload Image And try Again")
             }
         }
         else {
             setsubmit("Submit Request")
-            console.error('Please fill all fields and try again')
+            alert('Please fill all fields and try again')
         }
     }
     const pickImage = async () => {
@@ -74,10 +74,10 @@ const Map = ({ navigation }) => {
                 const blob = await response.blob();
                 setImage(blob)
                 settext(blob.data.name)
-                console.error('Image Selected Succuessully')
+                alert('Image Selected Succuessully')
             }
         } catch (er) {
-            console.error(er)
+            alert(er)
         }
     };
 

@@ -40,7 +40,7 @@ export default function Routes() {
   // useEffect(() => {
   // }, []);
   return (
-    <Stack.Navigator initialRouteName="Khana Sab Ke Lye">
+    <Stack.Navigator initialRouteName="Signup">
       <Stack.Screen name="Signup" component={Signup} options={{
         headerTitleAlign: 'center',
         headerShown: false
