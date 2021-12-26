@@ -30,9 +30,10 @@ const Admin = () => {
                     dob: el.dob,
                     fathername: el.fathername,
                     name: el.name,
-                    nooffamily :el.nooffamily,
-                    useruid: el.useruid,
+                    nooffamily: el.nooffamily,
+                    useruid: el.uid,
                 }
+                console.log(Data);
                 let userRef = doc(db, 'AcceptedFoodRequests', newuid)
                 let done = await setDoc(userRef, Data)
                 await deleteDoc(doc(db, "FoodRequests", el.uid));
