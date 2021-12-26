@@ -36,7 +36,7 @@ const Map = ({ navigation }) => {
                 currentUser,
             }
             let storageRef = ref(storage, `Cnic/${image.data.name}`)
-            if (image) {
+            if (image !== false) {
                 try {
                     await uploadBytes(storageRef, image)
                     let url = await getDownloadURL(storageRef)
@@ -44,10 +44,12 @@ const Map = ({ navigation }) => {
                     let userRef = doc(db, 'FoodRequests', uid)
                     await setDoc(userRef, Data)
                     setsubmit("Submitted Request !")
+                    settext("Upload Your CNIC Image")
+                    setImage(false)
                     navigation.navigate('Food Requests')
                 } catch (er) {
-                    setsubmit("Submit Request")
                     alert(er);
+                    setsubmit("Submit Request")
                 }
             }
             else {
